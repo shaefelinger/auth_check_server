@@ -6,10 +6,15 @@ const app = express(); //creates express-app-object
 app.use(express.json());
 const cors = require('cors');
 
+// app.use(express.static(__dirname + '/public')); // public-foder
+
+const port = 3000; // use port 3000
+
+app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
+
 const bcrypt = require('bcrypt');
 const saltRounds = 11;
 
-// ==========================================================================
 // Mongoose
 // ==========================================================================
 const mongoose = require('mongoose');
@@ -27,18 +32,12 @@ mongoose
   });
 // ==========================================================================
 
-// app.use(express.static(__dirname + '/public')); // public-foder
-
-const port = 3000; // use port 3000
-
-app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
-
+// ==========================================================================
 app.get('/', function (req, res) {
   console.log('A request was made to the root');
-  res.send('Hello');
+  res.send('A request was made to the root');
 });
 
-// ==========================================================================
 // Users
 // ==========================================================================
 
@@ -62,6 +61,9 @@ app.route('/users').get((req, res) => {
     }
   });
 });
+
+// register
+// ==========================================================================
 
 app.post('/register', (req, res) => {
   console.log('👍register');
@@ -96,6 +98,9 @@ app.post('/register', (req, res) => {
   });
 });
 
+// login
+// ==========================================================================
+
 app.post('/login', function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
@@ -106,17 +111,6 @@ app.post('/login', function (req, res) {
       res.send(err);
     } else {
       if (foundUser) {
-        // NO ENCRYPTION:
-        // if (foundUser.password === password) {
-        //   console.log('👍LogIn correct');
-        //   res.send({
-        //     user: {
-        //       email: foundUser.email,
-        //       name: foundUser.name,
-        //     },
-        //     token: 'logged in',
-        //   });
-
         console.log('found user', foundUser);
         bcrypt.compare(password, foundUser.password, function (err, result) {
           if (result) {
@@ -136,15 +130,6 @@ app.post('/login', function (req, res) {
       }
     }
   });
-});
-
-// ==========================================================================
-// auth
-// ==========================================================================
-
-app.post('/auth/login', (req, res) => {
-  console.log('Login', req.body);
-  res.send('Trying to login: ' + req.body.email + ' PW: ' + req.body.password);
 });
 
 // ==========================================================================
