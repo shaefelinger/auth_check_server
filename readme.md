@@ -3,5 +3,7 @@
 ## Routes:
 
 POST /login
+
 POST /register
+
 GET /users
