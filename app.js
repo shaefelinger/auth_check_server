@@ -5,9 +5,6 @@ const app = express(); //creates express-app-object
 
 const port = 3000; // use port 3000
 
-const authRoute = require('./modules/authRoute.js');
-const cookieRoute = require('./modules/cookieRoute.js');
-
 const cors = require('cors');
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
@@ -16,6 +13,13 @@ app.use(cookieParser());
 
 app.use(express.json());
 // app.use(express.static(__dirname + '/public')); // public-foder
+
+// ==========================================================================
+// Routes
+// ==========================================================================
+
+const authRoute = require('./modules/authRoute.js');
+const cookieRoute = require('./modules/cookieRoute.js');
 
 app.use('/auth', authRoute);
 app.use('/cookies', cookieRoute);
