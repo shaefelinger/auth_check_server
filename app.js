@@ -5,7 +5,6 @@ const app = express(); //creates express-app-object
 
 const port = 3000; // use port 3000
 
-const testRoute = require('./modules/testRoute.js');
 const authRoute = require('./modules/authRoute.js');
 const cookieRoute = require('./modules/cookieRoute.js');
 
@@ -18,7 +17,6 @@ app.use(cookieParser());
 app.use(express.json());
 // app.use(express.static(__dirname + '/public')); // public-foder
 
-app.use('/test', testRoute);
 app.use('/auth', authRoute);
 app.use('/cookies', cookieRoute);
 
