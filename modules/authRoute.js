@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const User = require('./db');
+
 router.get('/', (req, res) => {
   res.send('>>Auth root!');
 });
@@ -8,35 +10,35 @@ router.get('/', (req, res) => {
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// Mongoose
-// ==========================================================================
-const mongoose = require('mongoose');
+// // Mongoose
+// // ==========================================================================
+// const mongoose = require('mongoose');
 
-const url =
-  'mongodb+srv://dbUser:' +
-  process.env.MONGO_PW +
-  '@cluster0.dq3y7.mongodb.net/' +
-  process.env.MONGO_DB;
+// const url =
+//   'mongodb+srv://dbUser:' +
+//   process.env.MONGO_PW +
+//   '@cluster0.dq3y7.mongodb.net/' +
+//   process.env.MONGO_DB;
 
-mongoose
-  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(console.log('Database ready'))
-  .catch((err) => {
-    console.error('😱Connection to MongoDB went wrong : ' + err);
-  });
-// ==========================================================================
+// mongoose
+//   .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(console.log('Database ready'))
+//   .catch((err) => {
+//     console.error('😱Connection to MongoDB went wrong : ' + err);
+//   });
+// // ==========================================================================
 
-// Users
-// ==========================================================================
+// // Users
+// // ==========================================================================
 
-const userSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  profilePic: String,
-});
+// const userSchema = mongoose.Schema({
+//   name: String,
+//   email: String,
+//   password: String,
+//   profilePic: String,
+// });
 
-const User = mongoose.model('User', userSchema);
+// const User = mongoose.model('User', userSchema);
 
 ///////////////////// List of ALL users
 router.get('/list', (req, res) => {
