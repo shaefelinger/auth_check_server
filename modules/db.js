@@ -20,13 +20,13 @@ mongoose
 // Users
 // ==========================================================================
 
-const userSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  profilePic: String,
-});
+// const userSchema = mongoose.Schema({
+//   name: String,
+//   email: String,
+//   password: String,
+//   profilePic: String,
+// });
 
-const User = mongoose.model('User', userSchema);
+// const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+// module.exports = User;
