@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('./db');
+const User = require('../modules/db');
 
-router.get('/', (req, res) => {
-  res.send('>>Auth root!');
-});
+// router.get('/', (req, res) => {
+//   res.send('>>Auth root!');
+// });
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;

@@ -18,7 +18,7 @@ app.use(express.json());
 // Routes
 // ==========================================================================
 
-const authRoute = require('./modules/authRoute.js');
+const authRoute = require('./routes/authRoute.js');
 const cookieRoute = require('./modules/cookieRoute.js');
 
 app.use('/auth', authRoute);
